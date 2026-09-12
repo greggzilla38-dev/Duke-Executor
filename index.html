@@ -5,40 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duke's Executor Hub</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0b0f19; color: #f3f4f6; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-        nav { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-badge { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; font-weight: 800; padding: 8px 12px; border-radius: 8px; }
-        .hero { text-align: center; max-width: 800px; margin: 60px 20px 40px; display: flex; flex-direction: column; align-items: center; }
-        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        h1 span { background: linear-gradient(135deg, #f472b6, #c084fc, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-main { background: linear-gradient(135deg, #a855f7, #ec4899); color: white; border: none; padding: 14px 28px; border-radius: 10px; font-weight: 600; cursor: pointer; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Background glowing effect */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(147, 51, 234, 0.15);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.15);
+            bottom: -100px;
+            right: -100px;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        header {
+            padding: 25px 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container span {
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            font-size: 15px;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: -50px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            color: white;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 14px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(147, 51, 234, 0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(147, 51, 234, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .download-btn:active {
+            transform: translateY(1px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo-area">
-            <div class="logo-badge">👑</div>
-            <span>DUKE'S HUB</span>
+
+    <header>
+        <div class="logo-container">
+            👑 <span>DUKE'S HUB</span>
         </div>
-    </nav>
-    <section class="hero">
+    </header>
+
+    <main>
         <h1>Unleash Power with <span>Duke</span></h1>
-        <button class="btn-main" onclick="triggerDownload()">📥 Download Hub</button>
-    </section>
-    <script>
-        function triggerDownload() {
-            const blob = new Blob(["Duke Executor Payload"], { type: 'application/x-rar-compressed' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'DukeExecutor.rar';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    </script>
+        
+        <!-- This link goes right to your MediaFire download page in a new tab -->
+        <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" target="_blank" class="download-btn">
+            📥 Download Hub
+        </a>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Duke Executor. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
