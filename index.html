@@ -3,152 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duke's Executor Hub</title>
+    <title>Duke Executor - The Best External Executor</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #0b0f19;
+            background-color: #0b0b0f;
             color: #ffffff;
-            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: rgba(147, 51, 234, 0.18);
-            top: -100px;
-            left: -100px;
-            border-radius: 50%;
-            z-index: -1;
-            filter: blur(120px);
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: rgba(59, 130, 246, 0.18);
-            bottom: -100px;
-            right: -100px;
-            border-radius: 50%;
-            z-index: -1;
-            filter: blur(120px);
-        }
-
-        header {
-            padding: 25px 40px;
-            display: flex;
             align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            background: rgba(11, 11, 15, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
-        .logo-container {
+        .logo {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 18px;
-            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            background: #ffffff;
+            color: #0b0b0f;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-download {
+            background: #ffffff;
+            color: #0b0b0f;
+            padding: 10px 22px;
+            border-radius: 99px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .nav-download:hover {
+            background: #e5e7eb;
+            transform: scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #0b0b0f;
+            padding: 16px 32px;
+            border-radius: 99px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 16px 20px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.8;
+        }
+
+        .hero-subtext {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* UI Preview Showcase */
+        .preview-container {
+            max-width: 1050px;
+            margin: 40px auto 100px auto;
+            padding: 0 20px;
+        }
+
+        .app-window {
+            background: #141419;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
-        .logo-container span {
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            font-size: 16px;
+        .app-header {
+            background: #1a1a22;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 12px;
+            overflow-x: auto;
         }
 
-        main {
-            flex-grow: 1;
+        .app-tab {
+            background: #141419;
+            color: #9ca3af;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+        }
+
+        .app-tab.active {
+            background: #20202c;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .app-body {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            min-height: 380px;
+        }
+
+        .code-area {
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.6;
+            background: #111116;
+            overflow-x: auto;
+        }
+
+        .code-keyword { color: #c084fc; }
+        .code-string { color: #34d399; }
+        .code-func { color: #60a5fa; }
+
+        .sidebar-panel {
+            background: #141419;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4b5563;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-item {
+            padding: 6px 8px;
+            border-radius: 4px;
+            margin-bottom: 2px;
+            transition: background 0.1s;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            max-width: 1050px;
+            margin: 0 auto 120px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: #121217;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            margin-top: -40px;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        .stat-number {
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 35px;
             letter-spacing: -1px;
+            margin-bottom: 8px;
         }
 
-        h1 span {
-            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .stat-label {
+            color: #9ca3af;
+            font-size: 1rem;
         }
 
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
-            color: white;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 16px;
-            text-decoration: none;
-            box-shadow: 0 10px 30px -5px rgba(147, 51, 234, 0.5);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 35px -5px rgba(147, 51, 234, 0.7);
-            filter: brightness(1.15);
-        }
-
-        .download-btn:active {
-            transform: translateY(1px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
+        /* Responsive */
+        @media(max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .app-body { grid-template-columns: 1fr; }
+            .sidebar-panel { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            👑 <span>DUKE'S HUB</span>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <span>Duke Executor</span>
         </div>
-    </header>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <!-- This link automatically starts downloading your MediaFire RAR file instantly -->
+        <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" class="nav-download">Download</a>
+    </nav>
 
-    <main>
-        <h1>Unleash Power with <span>Duke</span></h1>
-        
-        <!-- This direct link triggers the automatic download immediately -->
-        <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" class="download-btn">
-            🚀 Download Hub Now
-        </a>
-    </main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>The first and best external executor.</h1>
+        <div class="hero-buttons">
+            <!-- Direct automatic download link button -->
+            <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" class="btn-primary">
+                Download for Windows
+            </a>
+            <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" class="btn-secondary">
+                Get Latest Update &rarr;
+            </a>
+        </div>
+        <p class="hero-subtext">Free forever &bull; Windows 10 and 11 &bull; v2.0.4</p>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Duke Executor. All rights reserved.</p>
-    </footer>
+    <!-- UI App Preview Window -->
+    <div class="preview-container">
+        <div class="app-window">
+            <div class="app-header">
+                <div class="logo-icon" style="width:20px;height:20px;font-size:10px;">👑</div>
+                <div class="app-tab active">👑 infinite yield</div>
+                <div class="app-tab">new script ⚡</div>
+                <div class="app-tab">Script #10</div>
+                <div class="app-tab">+</div>
+            </div>
+            <div class="app-body">
+                <div class="code-area">
+                    <span class="code-keyword">if not</span> game:IsLoaded() <span class="code-keyword">then</span> game.Loaded:Wait() <span class="code-keyword">end</span><br><br>
+                    <span class="code-keyword">function</span> <span class="code-func">missing</span>(t, f, fallback)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> type(f) ~= t <span class="code-keyword">then</span> <span class="code-keyword">return</span> f <span class="code-keyword">end</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> fallback<br>
+                    <span class="code-keyword">end</span><br><br>
+                    cloneref = <span class="code-func">missing</span>(<span class="code-string">"function"</span>, cloneref, <span class="code-keyword">function</span>(...) <span class="code-keyword">return</span> ... <span class="code-keyword">end</span>)<br>
+                    sethidden = <span class="code-func">missing</span>(<span class="code-string">"function"</span>, sethiddenproperty, set_hidden_property)<br>
+                    gethidden = <span class="code-func">missing</span>(<span class="code-string">"function"</span>, gethiddenproperty, get_hidden_prop)
+                </div>
+                <div class="sidebar-panel">
+                    <div class="sidebar-title">Explorer</div>
+                    <div class="sidebar-item">📁 autoexec</div>
+                    <div class="sidebar-item" style="padding-left: 20px; color:#6b7280;">Empty</div>
+                    <div class="sidebar-item">📁 workspace</div>
+                    <div class="sidebar-item">📂 tests</div>
+                    <div class="sidebar-item">📂 dex</div>
+                    <div class="sidebar-item">📂 infiniteyield</div>
+                    <div class="sidebar-item">📂 Rayfield</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid" id="features">
+        <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">UNC coverage</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">88%</div>
+            <div class="stat-label">sUNC coverage</div>
+        </div>
+        <div class="stat-card" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <div class="stat-number" style="font-size: 2.2rem; margin-bottom: 4px;">Free</div>
+                <div class="stat-label">No key system</div>
+            </div>
+            <div style="border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem;">
+                0 Keys
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Multi</div>
+            <div class="stat-label">Client support</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Instant</div>
+            <div class="stat-label">Update turnaround</div>
+        </div>
+    </div>
 
 </body>
 </html>
