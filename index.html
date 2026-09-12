@@ -22,31 +22,30 @@
             overflow: hidden;
         }
 
-        /* Background glowing effect */
         body::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(147, 51, 234, 0.15);
+            width: 450px;
+            height: 450px;
+            background: rgba(147, 51, 234, 0.18);
             top: -100px;
             left: -100px;
             border-radius: 50%;
             z-index: -1;
-            filter: blur(100px);
+            filter: blur(120px);
         }
 
         body::after {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(59, 130, 246, 0.15);
+            width: 450px;
+            height: 450px;
+            background: rgba(59, 130, 246, 0.18);
             bottom: -100px;
             right: -100px;
             border-radius: 50%;
             z-index: -1;
-            filter: blur(100px);
+            filter: blur(120px);
         }
 
         header {
@@ -60,15 +59,16 @@
             align-items: center;
             gap: 12px;
             background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 12px;
+            padding: 10px 18px;
+            border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .logo-container span {
             font-weight: bold;
             letter-spacing: 0.5px;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         main {
@@ -79,13 +79,13 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            margin-top: -50px;
+            margin-top: -40px;
         }
 
         h1 {
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             letter-spacing: -1px;
         }
 
@@ -98,23 +98,23 @@
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
             color: white;
-            padding: 16px 36px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 14px;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 16px;
             text-decoration: none;
-            box-shadow: 0 10px 25px -5px rgba(147, 51, 234, 0.4);
+            box-shadow: 0 10px 30px -5px rgba(147, 51, 234, 0.5);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -5px rgba(147, 51, 234, 0.6);
-            filter: brightness(1.1);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 35px -5px rgba(147, 51, 234, 0.7);
+            filter: brightness(1.15);
         }
 
         .download-btn:active {
@@ -140,9 +140,9 @@
     <main>
         <h1>Unleash Power with <span>Duke</span></h1>
         
-        <!-- This link goes right to your MediaFire download page in a new tab -->
-        <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" target="_blank" class="download-btn">
-            📥 Download Hub
+        <!-- This direct link triggers the automatic download immediately -->
+        <a href="https://www.mediafire.com/file/fv2gsb5aeppqvt7/Duke+executor+-+new+update.rar/file" class="download-btn">
+            🚀 Download Hub Now
         </a>
     </main>
 
