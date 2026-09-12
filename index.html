@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duke's Executor Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0f19; color: #f3f4f6; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        nav { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-badge { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; font-weight: 800; padding: 8px 12px; border-radius: 8px; }
+        .hero { text-align: center; max-width: 800px; margin: 60px 20px 40px; display: flex; flex-direction: column; align-items: center; }
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        h1 span { background: linear-gradient(135deg, #f472b6, #c084fc, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-main { background: linear-gradient(135deg, #a855f7, #ec4899); color: white; border: none; padding: 14px 28px; border-radius: 10px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-area">
+            <div class="logo-badge">👑</div>
+            <span>DUKE'S HUB</span>
+        </div>
+    </nav>
+    <section class="hero">
+        <h1>Unleash Power with <span>Duke</span></h1>
+        <button class="btn-main" onclick="triggerDownload()">📥 Download Hub</button>
+    </section>
+    <script>
+        function triggerDownload() {
+            const blob = new Blob(["Duke Executor Payload"], { type: 'application/x-rar-compressed' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'DukeExecutor.rar';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
